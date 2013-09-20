@@ -972,19 +972,19 @@ static void selinux_initialize(void)
 static int charging_mode_booting(void)
 {
 #ifndef BOARD_CHARGING_MODE_BOOTING_LPM
-	return 0;
+    return 0;
 #else
-	int f;
-	char cmb;
-	f = open(BOARD_CHARGING_MODE_BOOTING_LPM, O_RDONLY);
-	if (f < 0)
-		return 0;
+    int f;
+    char cmb;
+    f = open(BOARD_CHARGING_MODE_BOOTING_LPM, O_RDONLY);
+    if (f < 0)
+        return 0;
 
-	if (1 != read(f, (void *)&cmb,1))
-		return 0;
+    if (1 != read(f, (void *)&cmb,1))
+        return 0;
 
-	close(f);
-	return ('1' == cmb);
+    close(f);
+    return ('1' == cmb);
 #endif
 }
 
