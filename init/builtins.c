@@ -341,12 +341,11 @@ int do_log(int nargs, char **args)
     par[2] = "-tinit";
     for (i = 1; i < nargs; ++i) {
         value = args[i];
-        if (value[0] == '$') {
+        if (value[0] == '$' && value[1] != '$') {
             /* system property if value starts with '$' */
-            value++;
-            if (value[0] != '$') {
-                value = (char*) property_get(value);
-                if (!value) value = args[i];
+            char propvalue[PROP_VALUE_MAX];
+            if (property_get(&value[1], propvalue) > 0) {
+                value = strdup(propvalue);
             }
         }
         par[i+2] = value;
