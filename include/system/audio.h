@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2011 The Android Open Source Project
- * Copyright (c) 2012, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -191,6 +191,7 @@ typedef enum {
     AUDIO_FORMAT_DTS_LBR             = 0x13000000UL,
     AUDIO_FORMAT_AMR_WB_PLUS         = 0x14000000UL,
     AUDIO_FORMAT_MP2                 = 0x15000000UL,
+    AUDIO_FORMAT_EVRCNW              = 0x16000000UL,
 #endif
     AUDIO_FORMAT_MAIN_MASK           = 0xFF000000UL,
     AUDIO_FORMAT_SUB_MASK            = 0x00FFFFFFUL,
@@ -752,6 +753,7 @@ static inline bool audio_is_valid_format(audio_format_t format)
     case AUDIO_FORMAT_DTS_LBR:
     case AUDIO_FORMAT_AMR_WB_PLUS:
     case AUDIO_FORMAT_MP2:
+    case AUDIO_FORMAT_EVRCNW:
 #endif
         return true;
     default:
@@ -770,6 +772,9 @@ static inline bool audio_is_supported_compressed(audio_format_t format)
     if (format == AUDIO_FORMAT_AMR_NB ||
         format == AUDIO_FORMAT_AMR_WB ||
         format == AUDIO_FORMAT_EVRC ||
+        format == AUDIO_FORMAT_EVRCB ||
+        format == AUDIO_FORMAT_EVRCWB ||
+        format == AUDIO_FORMAT_EVRCNW ||
         format == AUDIO_FORMAT_QCELP ||
         format == AUDIO_FORMAT_AAC)
         return true;
